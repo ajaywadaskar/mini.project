@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit{
    this.createFormstructure();
   }
  createFormstructure(){
-   this.fb.group({
+  // this.loginForm.controls..patchValue(this.defaultValue);
+
+   this.loginForm=this.fb.group({
     
     'user_email':this.fb.control(''),
     'user_password':this.fb.control(''),
@@ -27,9 +29,10 @@ export class LoginComponent implements OnInit{
    })
  }
  login(){
-   let endPoint = 'login?' + 'user_email='+ this.loginForm.get('user_email')?.value + '&'+ 'user_pwd=' + this.loginForm.get('user_pwd')?.value;
+ 
+   let endPoint = 'login?' + 'user_email='+ this.loginForm.get('user_email')?.value + '&'+ 'user_pwd=' + this.loginForm.get('user_password')?.value;
    this.errorMessage="";
-      this.http.getDataFromServer('endpoint').subscribe(
+      this.http.getDataFromServer(endPoint).subscribe(
         (responce:any)=>{
            if(responce && responce.status===0){
              this.errorMessage=responce.message;

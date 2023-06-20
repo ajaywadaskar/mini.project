@@ -28,21 +28,23 @@ export class SignUpComponent implements OnInit {
  }
  signup(){
   let formData:any 
-  FormData = new formData();
+  formData = new formData();
   formData.set('user_name',this.signupForm.get('name')?.value);
   formData.set('user_email',this.signupForm.get('email')?.value);
   formData.set('user_gender',this.signupForm.get('gender')?.value);
   formData.set('user_contact_no',this.signupForm.get('mobile')?.value);
   formData.set('user_password',this.signupForm.get('password')?.value);
-    
+ 
   
   
   this.http.saveDataFromServer('Register',formData).subscribe(
       (responce:any)=>{
-        console.log(responce)
+        if(responce && responce.status ===1){
+            console.log(responce)
+        }
       },
       ()=>{
 
       })
- }
-}
+    }
+  }

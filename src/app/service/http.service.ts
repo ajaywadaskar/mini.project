@@ -13,7 +13,7 @@ export class HttpService {
   }
   getDataFromServer(endpoint:string){
     const url=this.baseUrl + endpoint;
-     return this.httpClient.get('url')
+     return this.httpClient.get(url)
   }
   saveDataFromServer(endpoint:string, requestBody:any){
     const url = this.baseUrl + endpoint;
