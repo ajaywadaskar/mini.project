@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpService } from '../service/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit{
   loginForm!:FormGroup;
   errorMessage:string='';
   
-  constructor(private fb:FormBuilder,private http:HttpService){
+  constructor(private fb:FormBuilder,private http:HttpService ,private router:Router){
 
   }
   ngOnInit(): void {
@@ -36,6 +37,8 @@ export class LoginComponent implements OnInit{
         (responce:any)=>{
            if(responce && responce.status===0){
              this.errorMessage=responce.message;
+           }else if(responce && responce.status==1){
+            this.router.navigate(['/user-list']);
            }
         },
         ()=>{

@@ -9,7 +9,7 @@ import { HttpService } from '../service/http.service';
 })
 export class SignUpComponent implements OnInit {
   signupForm!:FormGroup;
-  
+  message:string="";
   constructor(private fb:FormBuilder,private http:HttpService){
 
   }
@@ -40,10 +40,10 @@ export class SignUpComponent implements OnInit {
   this.http.saveDataFromServer('Register',formData).subscribe(
       (responce:any)=>{
         if(responce && responce.status ===1){
-            console.log(responce)
+           this.message=responce.message; 
         }
       },
-      ()=>{
+      (error)=>{
 
       })
     }

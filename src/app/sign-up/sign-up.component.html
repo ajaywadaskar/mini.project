@@ -1,6 +1,7 @@
 <div class="container-fluid m-auto bg-light text-dark my-container p-4 mt-5">
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" *ngIf="message !=''">
         <!-- A simple success alert—check it out! -->
+        {{message}}
     </div>
      <form [formGroup]="signupForm" (ngSubmit)="signup()">
     <div class="mb-3">
